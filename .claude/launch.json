@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "client",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite"],
+      "cwd": "client",
+      "port": 5173,
+      "autoPort": true,
+      "env": {
+        "PORT": "5173"
+      }
+    }
+  ]
+}

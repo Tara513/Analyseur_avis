@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(claude-api)",
+      "Skill(claude-api:*)",
+      "Bash(npm install:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:55524)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:51204)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:51251)"
+    ]
+  }
+}
