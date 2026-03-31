@@ -1,17 +1,12 @@
-import express from 'express';
-import cors from 'cors';
 import Groq from 'groq-sdk';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const app = express();
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
 
 const client = new Groq({ apiKey: process.env.groq_free });
 
-app.post('/api/analyze', async (req, res) => {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { query } = req.body;
 
   if (!query || typeof query !== 'string' || !query.trim()) {
@@ -69,16 +64,4 @@ Inclus entre 4 et 6 key_aspects pertinents par sujet. Sois précis, objectif et 
     console.error('Erreur analyse:', err);
     res.status(500).json({ error: err.message || 'Erreur interne du serveur.' });
   }
-});
-
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', apiKey: !!process.env.ANTHROPIC_API_KEY });
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
-  if (!process.env.groq_free) {
-    console.warn('⚠️  groq_free non définie dans .env');
-  }
-});
+}
