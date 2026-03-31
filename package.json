@@ -7,7 +7,7 @@
     "dev:server": "node --watch server.js",
     "dev:client": "cd client && npm run dev",
     "install:all": "npm install && cd client && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
